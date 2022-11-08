@@ -1,5 +1,6 @@
 import { GithubLogo, Icon, InstagramLogo, User, WhatsappLogo } from "phosphor-react";
 import React from "react";
+import { Social } from "../components/Social";
 
 interface LinkProps {
   title: string;
@@ -17,16 +18,16 @@ const links = [
 export const Home = () => {
   return (
     <div className="h-screen flex flex-col items-center py-10">
-      <h1 className="text-white text-4xl sm:text-5xl font-semibold mb-4 pt-24">
+      <h1 className="text-white text-4xl sm:text-5xl font-semibold mb-4 pt-24 select-none">
         Matheus Barboza
       </h1>
-      <span className="text-gray-100 text-lg mb-6">Veja meus links 👇</span>
+      <span className="text-gray-100 text-lg mb-6 select-none">Veja meus links 👇</span>
 
       <main className="max-w-[600px] w-11/12 text-center">
         {links.map(({ title, link }: LinkProps) => {
           return (
             <section className="bg-white w-full mb-5 py-2 select-none rounded hover:scale-105 transform transition duration-500 cursor-pointer">
-              <a href={link} target="blank">
+              <a href={link} target="_blank" rel="noreferrer">
                 <span className="text-lg leading-tight text-gray-600 font-semibold">
                   {title}
                 </span>
@@ -34,11 +35,16 @@ export const Home = () => {
             </section>
           );
         })}
-        <div className="flex items-center justify-center gap-3 mt-10">
+        <footer className="flex items-center justify-center gap-3 mt-10">
           {links.map(({ icon: Icon, link }: LinkProps) => {
-            return <a href={link} target="blank" className="cursor-pointer hover:scale-110 transform transition duration-300"><Icon size={30} color="white" /></a>;
+            return (
+              <Social 
+                icon={Icon}
+                link={link}
+              />
+            )
           })}
-        </div>
+        </footer>
       </main>
     </div>
   );
