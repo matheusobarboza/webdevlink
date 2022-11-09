@@ -4,9 +4,12 @@ import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Logo } from "../components/Logo";
+import { Input } from "../components/ui/Input";
 import { auth } from "../services/firebaseConnection";
 
-export const SignIn = () => {
+interface ILoginPageProps {} 
+
+export const SignIn: React.FunctionComponent<ILoginPageProps> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -44,16 +47,14 @@ export const SignIn = () => {
         onSubmit={handleSignIn}
         className="flex flex-col gap-3 w-full max-w-xs sm:max-w-[430px] mt-5 mb-5"
       >
-        <input
-          className="border-none h-9 mb-2 rounded px-2 outline-none bg-gray-600 text-white"
+        <Input
           type="email"
           placeholder="E-mail"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)} 
         />
 
-        <input
-          className="border-none h-9 mb-2 rounded px-2 outline-none bg-gray-600 text-white"
+        <Input
           type="password"
           placeholder="Senha"
           autoComplete="on"
